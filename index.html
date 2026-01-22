@@ -3,133 +3,195 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Claims Assistant - Next Generation Processing</title>
-    <meta property="og:title" content="AI Claims Assistant" />
+    <title>AI Claims & Analytics Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    </head>
-<body>
-    <!-- Navigation -->
+</head>
+<body id="main-body">
     <nav>
-        <div class="nav-content">
-            <div class="logo">ClaimFlow</div>
+        <div class="container nav-content">
+            <div class="logo" onclick="toggleInterface()" data-testid="toggle-ui">ClaimFlow</div>
+            
             <div class="nav-links">
                 <a href="#features">Features</a>
-                <a href="#how">How it Works</a>
+                <a href="#how">Process</a>
+                <a href="#benefits">Benefits</a>
             </div>
-            <div class="nav-buttons">
-                <button class="btn btn-secondary">Sign In</button>
-                <button class="btn btn-primary">Get Started</button>
+
+            <div class="nav-actions">
+                <button class="btn btn-secondary" data-testid="btn-signin">Sign In</button>
+                <button class="btn btn-primary" data-testid="btn-join">Join Now</button>
+            </div>
+
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" data-testid="mobile-toggle">☰</button>
+        </div>
+        
+        <!-- Mobile Navigation Overlay -->
+        <div id="mobile-menu" class="mobile-menu-overlay">
+            <div class="mobile-menu-container">
+                <a href="#features" onclick="toggleMobileMenu()" class="mobile-link">Features</a>
+                <a href="#how" onclick="toggleMobileMenu()" class="mobile-link">Process</a>
+                <a href="#benefits" onclick="toggleMobileMenu()" class="mobile-link">Benefits</a>
+                <hr class="mobile-divider">
+                <button class="btn btn-secondary mobile-btn">Sign In</button>
+                <button class="btn btn-primary mobile-btn">Join Now</button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge"> Next Gen AI Processing</div>
-            <h1>Welcome to your <span class="gradient-text">AI-Powered</span> Claims Assistant</h1>
-            <p>Experience the future of insurance. Fast, smart, and hassle-free claim processing — powered by intelligent automation that understands you.</p>
-            
-            <div class="cta-buttons">
-                <button class="btn btn-primary">
-                    <span>Start a New Claim</span>
-                    <span>→</span>
-                </button>
-                <button class="btn btn-secondary">Watch Demo</button>
-            </div>
-
-            <div class="trust-badge">
-                <div class="avatars">
-                    <div class="avatar">AI</div>
-                    <div class="avatar">AI</div>
-                    <div class="avatar">AI</div>
+    <main class="container">
+        <!-- Main UI View: Claims Assistant -->
+        <div id="primary-ui" class="ui-view active">
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">◆ Next Gen AI Processing</div>
+                    <h1>Welcome to your <br><span class="gradient-text">AI-Powered</span> Claims</h1>
+                    <p>Experience fast, smart, and hassle-free claim processing powered by intelligent automation and real-time verification.</p>
+                    <div class="cta-group">
+                        <button class="btn btn-primary">Start New Claim →</button>
+                        <button class="btn btn-secondary">Watch Demo</button>
+                    </div>
                 </div>
-                <span>Trusted by 10,000+ users</span>
-            </div>
+                <div class="hero-visual">
+                    <div class="glass-card">
+                        <div class="card-label">★ AI Assessment</div>
+                        <div class="card-stats">
+                            <div class="stat-row">
+                                <span class="stat-label">System Status</span>
+                                <span class="stat-value-status">Active</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Analysis Accuracy</span>
+                                <span class="stat-value">99.7%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Processing Speed</span>
+                                <span class="stat-value-primary">Instant</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="how" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">How it <span class="gradient-text">Works</span></h2>
+                </div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="icon-box">↑</div>
+                        <h3>Upload</h3>
+                        <p>Securely upload claim documents for instant scanning and data extraction.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box">→</div>
+                        <h3>Submit</h3>
+                        <p>Review the extracted information and submit your claim with a single click.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box">⚙</div>
+                        <h3>Assess</h3>
+                        <p>Our AI engine provides real-time validation and preliminary assessment results.</p>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <div class="hero-visual">
-            <div class="central-orb"></div>
-            
-            <div class="glass-card card-1">
-                <div class="card-title"> Claim Settled</div>
-                <div class="card-stat">
-                    <span class="stat-label">Status</span>
-                    <span class="stat-value">✓ Processed</span>
+        <!-- Alternate UI View: Analytics Engine -->
+        <div id="alternate-ui" class="ui-view ui-alternate">
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge" style="color: var(--primary); border-color: var(--primary);">◆ Analytics Engine V2</div>
+                    <h1>Predictive <span class="gradient-text">Insights</span> Dashboard</h1>
+                    <p>Unlock the power of your data with advanced neural prediction models. Monitor risk factors, trends, and automated payouts at scale.</p>
+                    <div class="cta-group">
+                        <button class="btn btn-primary">Launch Analytics</button>
+                        <button class="btn btn-secondary">Export Report</button>
+                    </div>
                 </div>
-                <div class="card-stat">
-                    <span class="stat-label">Assessment</span>
-                    <span class="stat-value">✓ Complete</span>
+                <div class="hero-visual">
+                    <div class="glass-card">
+                        <div class="card-label">● Global Risk Index</div>
+                        <div class="card-value-large">Low</div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill"></div>
+                        </div>
+                        <p class="card-footer-text">System operating at peak efficiency. No major anomalies detected in current stream.</p>
+                    </div>
                 </div>
-                <div class="card-stat">
-                    <span class="stat-label">Settlement</span>
-                    <span class="stat-value">✓ Confirmed</span>
-                </div>
-            </div>
+            </section>
 
-            <div class="glass-card card-2">
-                <div class="card-title"> Processing Speed</div>
-                <div class="card-content" style="font-size: 32px; font-weight: bold; color: var(--primary-light); margin: 10px 0;">98%</div>
-                <div class="card-content">Faster than competitors</div>
-            </div>
-
-            <div class="glass-card card-3">
-                <div class="card-title"> AI Accuracy</div>
-                <div class="card-content" style="font-size: 32px; font-weight: bold; background: linear-gradient(135deg, var(--primary-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 10px 0;">99.7%</div>
-                <div class="card-content">Claims analyzed correctly</div>
-            </div>
+            <section class="section">
+                <div class="section-header">
+                    <h2 class="section-title">The <span class="gradient-text">Protocol</span></h2>
+                </div>
+                <div class="grid">
+                    <div class="card">
+                        <div class="icon-box">●</div>
+                        <div class="card-text">
+                            <h3>Ingestion</h3>
+                            <p>Stream complex data points through secure high-throughput neural gateways.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box">★</div>
+                        <div class="card-text">
+                            <h3>Synthesis</h3>
+                            <p>AI models cross-reference historical patterns and live market fluctuations.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box">◆</div>
+                        <div class="card-text">
+                            <h3>Delivery</h3>
+                            <p>Receive actionable intelligence reports with zero-latency dashboard updates.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
+    </main>
 
-    <!-- How It Works -->
-    <section class="how-it-works" id="how">
-        <div class="container">
-            <h2 class="section-title">How it <span class="gradient-text">Works</span></h2>
-            <p class="section-subtitle">Complex claims processed in simple steps. Our AI handles the heavy lifting so you don't have to.</p>
-            
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <div class="step-icon">📤</div>
-                    <h3 class="step-title">Upload Documents</h3>
-                    <p class="step-description">Securely upload your documents. Our system automatically scans and extracts key information instantly.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <div class="step-icon">✈️</div>
-                    <h3 class="step-title">Submit Claim</h3>
-                    <p class="step-description">Review extracted data and submit your claim with a single click. No more lengthy forms.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <div class="step-icon">🤖</div>
-                    <h3 class="step-title">Get AI Assessment</h3>
-                    <p class="step-description">Our advanced AI analyzes your claim against policy rules in real-time for immediate feedback.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <div class="container">
-        <section class="cta-section">
-            <h2>Ready to Transform Your Claims Experience?</h2>
-            <p>Join thousands of satisfied users who are processing claims faster than ever before.</p>
-            <button class="btn btn-primary" style="font-size: 16px; padding: 16px 40px;">
-                <span>Start Free Trial</span>
-                <span>→</span>
-            </button>
-        </section>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2024 ClaimFlow AI. All rights reserved. Transforming insurance claims, one submission at a time.</p>
+    <footer class="container">
+        <p>© 2024 ClaimFlow AI. Intelligence in every claim.</p>
     </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const isHidden = menu.style.display === 'none';
+            menu.style.display = isHidden ? 'block' : 'none';
+            
+            // Prevent scroll when menu is open
+            document.body.style.overflow = isHidden ? 'hidden' : 'auto';
+        }
+
+        function toggleInterface() {
+            const primary = document.getElementById('primary-ui');
+            const alternate = document.getElementById('alternate-ui');
+            const body = document.getElementById('main-body');
+            const isPrimary = primary.classList.contains('active');
+
+            if (isPrimary) {
+                primary.classList.remove('active');
+                alternate.classList.add('active');
+                body.classList.add('ui-alternate');
+            } else {
+                primary.classList.add('active');
+                alternate.classList.remove('active');
+                body.classList.remove('ui-alternate');
+            }
+            
+            // Close mobile menu if open during toggle
+            const menu = document.getElementById('mobile-menu');
+            if (menu.style.display === 'block') {
+                toggleMobileMenu();
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
