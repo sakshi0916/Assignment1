@@ -15,14 +15,14 @@
             <div class="logo" onclick="toggleInterface()" data-testid="toggle-ui">ClaimFlow</div>
             
             <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#how">Process</a>
-                <a href="#benefits">Benefits</a>
+                <a href="#features" onclick="showPage('features')" data-nav="features">Features</a>
+                <a href="#how" onclick="showPage('process')" data-nav="process">Process</a>
+                <a href="#benefits" onclick="showPage('benefits')" data-nav="benefits">Benefits</a>
             </div>
 
             <div class="nav-actions">
-                <button class="btn btn-secondary" data-testid="btn-signin">Sign In</button>
-                <button class="btn btn-primary" data-testid="btn-join">Join Now</button>
+                <button class="btn btn-secondary" data-testid="btn-signin" onclick="showPage('signin')">Sign In</button>
+                <button class="btn btn-primary" data-testid="btn-join" onclick="showPage('join')">Join Now</button>
             </div>
 
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()" data-testid="mobile-toggle">☰</button>
@@ -31,12 +31,12 @@
         <!-- Mobile Navigation Overlay -->
         <div id="mobile-menu" class="mobile-menu-overlay">
             <div class="mobile-menu-container">
-                <a href="#features" onclick="toggleMobileMenu()" class="mobile-link">Features</a>
-                <a href="#how" onclick="toggleMobileMenu()" class="mobile-link">Process</a>
-                <a href="#benefits" onclick="toggleMobileMenu()" class="mobile-link">Benefits</a>
+                <a href="#features" onclick="showPage('features'); toggleMobileMenu()" class="mobile-link">Features</a>
+                <a href="#how" onclick="showPage('process'); toggleMobileMenu()" class="mobile-link">Process</a>
+                <a href="#benefits" onclick="showPage('benefits'); toggleMobileMenu()" class="mobile-link">Benefits</a>
                 <hr class="mobile-divider">
-                <button class="btn btn-secondary mobile-btn">Sign In</button>
-                <button class="btn btn-primary mobile-btn">Join Now</button>
+                <button class="btn btn-secondary mobile-btn" onclick="showPage('signin'); toggleMobileMenu()">Sign In</button>
+                <button class="btn btn-primary mobile-btn" onclick="showPage('join'); toggleMobileMenu()">Join Now</button>
             </div>
         </div>
     </nav>
@@ -44,127 +44,312 @@
     <main class="container">
         <!-- Main UI View: Claims Assistant -->
         <div id="primary-ui" class="ui-view active">
-            <section class="hero">
-                <div class="hero-content">
-                    <div class="hero-badge">◆ Next Gen AI Processing</div>
-                    <h1>Welcome to your <br><span class="gradient-text">AI-Powered</span> Claims</h1>
-                    <p>Experience fast, smart, and hassle-free claim processing powered by intelligent automation and real-time verification.</p>
-                    <div class="cta-group">
-                        <button class="btn btn-primary">Start New Claim →</button>
-                        <button class="btn btn-secondary">Watch Demo</button>
+            <div class="primary-page" id="primary-home">
+                <section class="hero">
+                    <div class="hero-content">
+                        <div class="hero-badge">◆ Next Gen AI Processing</div>
+                        <h1>Welcome to your <br><span class="gradient-text">AI-Powered</span> Claims</h1>
+                        <p class="line-clamp-2">Experience fast, smart, and hassle-free claim processing powered by intelligent automation and real-time verification.</p>
+                        <div class="cta-group">
+                            <button class="btn btn-primary" onclick="showPage('primary-claim-flow')">Start New Claim →</button>
+                            <button class="btn btn-secondary" onclick="showPage('demo-view')">Watch Demo</button>
+                        </div>
                     </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="glass-card">
-                        <div class="card-label">★ AI Assessment</div>
-                        <div class="card-stats">
-                            <div class="stat-row">
-                                <span class="stat-label">System Status</span>
-                                <span class="stat-value-status">Active</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">Analysis Accuracy</span>
-                                <span class="stat-value">99.7%</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">Processing Speed</span>
-                                <span class="stat-value-primary">Instant</span>
+                    <div class="hero-visual">
+                        <div class="glass-card">
+                            <div class="card-label">★ AI Assessment</div>
+                            <div class="card-stats">
+                                <div class="stat-row">
+                                    <span class="stat-label">System Status</span>
+                                    <span class="stat-value-status">Active</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Analysis Accuracy</span>
+                                    <span class="stat-value">99.7%</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Processing Speed</span>
+                                    <span class="stat-value-primary">Instant</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            
-            <section id="how" class="section">
-                <div class="section-header">
-                    <h2 class="section-title">How it <span class="gradient-text">Works</span></h2>
-                </div>
-                <div class="grid">
+                </section>
+                
+                <section id="how" class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">How it <span class="gradient-text">Works</span></h2>
+                    </div>
+                    <div class="grid">
+                        <div class="card">
+                            <div class="icon-box">↑</div>
+                            <h3>Upload</h3>
+                            <p class="line-clamp-2">Securely upload claim documents for instant scanning and data extraction.</p>
+                        </div>
+                        <div class="card">
+                            <div class="icon-box">→</div>
+                            <h3>Submit</h3>
+                            <p class="line-clamp-2">Review the extracted information and submit your claim with a single click.</p>
+                        </div>
+                        <div class="card">
+                            <div class="icon-box">⚙</div>
+                            <h3>Assess</h3>
+                            <p class="line-clamp-2">Our AI engine provides real-time validation and preliminary assessment results.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="primary-page" id="primary-features" style="display: none; padding: 5rem 0;">
+                <h2 class="section-title text-center">Claims <span class="gradient-text">Assistant</span> Features</h2>
+                <div class="grid" style="margin-top: 4rem;">
                     <div class="card">
-                        <div class="icon-box">↑</div>
-                        <h3>Upload</h3>
-                        <p>Securely upload claim documents for instant scanning and data extraction.</p>
+                        <div class="icon-box">✦</div>
+                        <h3>Instant Extraction</h3>
+                        <p class="line-clamp-2">Neural networks automatically pull data from receipts, invoices, and reports.</p>
                     </div>
                     <div class="card">
-                        <div class="icon-box">→</div>
-                        <h3>Submit</h3>
-                        <p>Review the extracted information and submit your claim with a single click.</p>
+                        <div class="icon-box">🛡</div>
+                        <h3>Fraud Shield</h3>
+                        <p class="line-clamp-2">Enterprise-grade fraud detection scans for inconsistencies in milliseconds.</p>
                     </div>
                     <div class="card">
-                        <div class="icon-box">⚙</div>
-                        <h3>Assess</h3>
-                        <p>Our AI engine provides real-time validation and preliminary assessment results.</p>
+                        <div class="icon-box">⚡</div>
+                        <h3>Real-time Tracking</h3>
+                        <p class="line-clamp-2">Follow your claim's progress through every stage of the approval pipeline.</p>
                     </div>
                 </div>
-            </section>
+                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('primary-home')">← Back to Home</button>
+            </div>
+
+            <div class="primary-page" id="primary-process" style="display: none; padding: 5rem 0;">
+                <h2 class="section-title text-center">Our <span class="gradient-text">Workflow</span></h2>
+                <div class="grid" style="margin-top: 4rem;">
+                    <div class="card"><h3>1. Data Intake</h3><p>Secure upload through our encrypted neural gateway.</p></div>
+                    <div class="card"><h3>2. AI Analysis</h3><p>Deep learning models validate all submitted documentation.</p></div>
+                    <div class="card"><h3>3. Final Payout</h3><p>Automated disbursement upon successful verification.</p></div>
+                </div>
+                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('primary-home')">← Back to Home</button>
+            </div>
+
+            <div class="primary-page" id="primary-benefits" style="display: none; padding: 4rem 0;">
+                <h2 class="section-title text-center">Why Choose <span class="gradient-text">ClaimFlow</span></h2>
+                <div class="grid" style="margin-top: 4rem;">
+                    <div class="card"><h3>90% Faster</h3><p>Reduce processing time from weeks to seconds with automation.</p></div>
+                    <div class="card"><h3>Zero Error</h3><p>Eliminate manual entry mistakes with smart OCR technology.</p></div>
+                    <div class="card"><h3>24/7 Support</h3><p>Our AI assistants are always online to help with your claims.</p></div>
+                </div>
+                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('primary-home')">← Back to Home</button>
+            </div>
         </div>
 
         <!-- Alternate UI View: Analytics Engine -->
         <div id="alternate-ui" class="ui-view ui-alternate">
-            <section class="hero">
-                <div class="hero-content">
-                    <div class="hero-badge" style="color: var(--primary); border-color: var(--primary);">◆ Analytics Engine V2</div>
-                    <h1>Predictive <span class="gradient-text">Insights</span> Dashboard</h1>
-                    <p>Unlock the power of your data with advanced neural prediction models. Monitor risk factors, trends, and automated payouts at scale.</p>
-                    <div class="cta-group">
-                        <button class="btn btn-primary">Launch Analytics</button>
-                        <button class="btn btn-secondary">Export Report</button>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="glass-card">
-                        <div class="card-label">● Global Risk Index</div>
-                        <div class="card-value-large">Low</div>
-                        <div class="progress-bar-container">
-                            <div class="progress-bar-fill"></div>
+            <div class="alt-page" id="alt-home">
+                <section class="hero">
+                    <div class="hero-content">
+                        <div class="hero-badge" style="color: var(--primary); border-color: var(--primary);">◆ Analytics Engine V2</div>
+                        <h1>Predictive <span class="gradient-text">Insights</span> Dashboard</h1>
+                        <p class="line-clamp-2">Unlock the power of your data with advanced neural prediction models. Monitor risk factors, trends, and automated payouts at scale.</p>
+                        <div class="cta-group">
+                            <button class="btn btn-primary" onclick="showPage('alt-features')">Launch Analytics</button>
+                            <button class="btn btn-secondary" onclick="showPage('report-view')">Export Report</button>
                         </div>
-                        <p class="card-footer-text">System operating at peak efficiency. No major anomalies detected in current stream.</p>
                     </div>
-                </div>
-            </section>
+                    <div class="hero-visual">
+                        <div class="glass-card">
+                            <div class="card-label">● Global Risk Index</div>
+                            <div class="card-value-large">Low</div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <p class="card-footer-text">System operating at peak efficiency. No major anomalies detected in current stream.</p>
+                        </div>
+                    </div>
+                </section>
 
-            <section class="section">
-                <div class="section-header">
-                    <h2 class="section-title">The <span class="gradient-text">Protocol</span></h2>
+                <section class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">The <span class="gradient-text">Protocol</span></h2>
+                    </div>
+                    <div class="grid">
+                        <div class="card">
+                            <div class="icon-box">●</div>
+                            <div class="card-text">
+                                <h3>Ingestion</h3>
+                                <p class="line-clamp-2">Stream complex data points through secure high-throughput neural gateways.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="icon-box">★</div>
+                            <div class="card-text">
+                                <h3>Synthesis</h3>
+                                <p class="line-clamp-2">AI models cross-reference historical patterns and live market fluctuations.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="icon-box">◆</div>
+                            <div class="card-text">
+                                <h3>Delivery</h3>
+                                <p class="line-clamp-2">Receive actionable intelligence reports with zero-latency dashboard updates.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="alt-page" id="alt-features" style="display: none; padding: 4rem 0;">
+                <h2 class="section-title text-center">Analytics <span class="gradient-text">Capabilities</span></h2>
+                <div class="grid" style="margin-top: 4rem;">
+                    <div class="card"><h3>Deep Learning</h3><p>Leverage recursive neural networks for pattern recognition.</p></div>
+                    <div class="card"><h3>Anomaly Discovery</h3><p>Detect outliers in data streams with 99.9% precision.</p></div>
+                    <div class="card"><h3>Predictive Risk</h3><p>Forecast future liabilities based on current market trends.</p></div>
                 </div>
-                <div class="grid">
-                    <div class="card">
-                        <div class="icon-box">●</div>
-                        <div class="card-text">
-                            <h3>Ingestion</h3>
-                            <p>Stream complex data points through secure high-throughput neural gateways.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="icon-box">★</div>
-                        <div class="card-text">
-                            <h3>Synthesis</h3>
-                            <p>AI models cross-reference historical patterns and live market fluctuations.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="icon-box">◆</div>
-                        <div class="card-text">
-                            <h3>Delivery</h3>
-                            <p>Receive actionable intelligence reports with zero-latency dashboard updates.</p>
-                        </div>
-                    </div>
+                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('alt-home')">← Back to Home</button>
+            </div>
+
+            <div class="alt-page" id="alt-process" style="display: none; padding: 4rem 0;">
+                <h2 class="section-title text-center">Data <span class="gradient-text">Pipeline</span></h2>
+                <div class="grid" style="margin-top: 1rem;">
+                    <div class="card"><h3>Streaming</h3><p>Real-time data ingestion via distributed node networks.</p></div>
+                    <div class="card"><h3>Processing</h3><p>Parallelized computation across high-performance clusters.</p></div>
+                    <div class="card"><h3>Visualization</h3><p>Instant translation of complex data into actionable UI.</p></div>
                 </div>
-            </section>
+                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('alt-home')">← Back to Home</button>
+            </div>
+
+            <div class="alt-page" id="alt-benefits" style="display: none; padding: 4rem 0;">
+                <h2 class="section-title text-center">Enterprise <span class="gradient-text">Edge</span></h2>
+                <div class="grid" style="margin-top: 4rem;">
+                    <div class="card"><h3>Scalability</h3><p>Handle millions of concurrent data points with ease.</p></div>
+                    <div class="card"><h3>Security</h3><p>Military-grade encryption for all sensitive data streams.</p></div>
+                    <div class="card"><h3>Compliance</h3><p>Automatic auditing and regulatory reporting built-in.</p></div>
+                </div>
+                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('alt-home')">← Back to Home</button>
+            </div>
         </div>
     </main>
+
+    <!-- Generic Mockup Pages (Hidden by default) -->
+    <div id="demo-view" class="container page-content" style="display: none; padding: 10rem 0; text-align: center;">
+        <div class="glass-card" style="margin: 0 auto; max-width: 800px; padding: 4rem;">
+            <div class="icon-box" style="margin: 0 auto 2rem; width: 80px; height: 80px; font-size: 2rem;">▶</div>
+            <h2 class="section-title">System <span class="gradient-text">Walkthrough</span></h2>
+            <p style="margin: 2rem 0;">Initializing demo environment... Experience the power of AI-driven automation in real-time.</p>
+            <div style="background: rgba(0,0,0,0.1); border-radius: 1rem; height: 300px; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--border);">
+                <span class="text-muted">[ Video Placeholder: AI Processing Demo ]</span>
+            </div>
+            <button class="btn btn-secondary" style="margin-top: 3rem;" onclick="showPage('home')">Exit Demo</button>
+        </div>
+    </div>
+
+    <div id="report-view" class="container page-content" style="display: none; padding: 10rem 0; text-align: center;">
+        <div class="glass-card" style="margin: 0 auto; max-width: 600px;">
+            <div class="icon-box" style="margin: 0 auto 2rem;">↓</div>
+            <h2 class="section-title">Intelligence <span class="gradient-text">Report</span></h2>
+            <p style="margin: 2rem 0;">Generating comprehensive analytics summary for the current fiscal period.</p>
+            <div style="text-align: left; background: rgba(0,0,0,0.05); padding: 1.5rem; border-radius: 1rem; margin-bottom: 2rem;">
+                <div class="stat-row"><span>Total Claims</span><strong>14,202</strong></div>
+                <div class="stat-row"><span>Efficiency Gain</span><strong>+22.4%</strong></div>
+                <div class="stat-row"><span>Risk Factor</span><strong>Minimal</strong></div>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;">Download PDF</button>
+            <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;" onclick="showPage('home')">Return to Dashboard</button>
+        </div>
+    </div>
+
+    <div id="primary-claim-flow" class="container page-content" style="display: none; padding: 8rem 0;">
+        <h2 class="section-title text-center">New <span class="gradient-text">Claim</span> Wizard</h2>
+        <div class="glass-card" style="margin: 4rem auto; max-width: 500px;">
+            <div class="stat-row" style="margin-bottom: 2rem;">
+                <span class="stat-label">Step 1 of 3</span>
+                <span class="stat-value-primary">Identification</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+                    <label style="font-size: 0.875rem; font-weight: 600;">Policy Number</label>
+                    <div style="padding: 1rem; background: var(--glass); border: 1px solid var(--border); border-radius: 0.75rem; color: var(--text-muted);">CP-992-881-X</div>
+                </div>
+                <button class="btn btn-primary">Scan Documents →</button>
+                <button class="btn btn-secondary" onclick="showPage('home')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shared Sign In Page (Adapts to current UI) -->
+    <div id="signin-view" class="container" style="display: none; padding: 10rem 0;">
+        <div class="glass-card" style="margin: 0 auto; text-align: center;">
+            <h2 class="section-title">Access <span class="gradient-text">Gateway</span></h2>
+            <p style="margin: 2rem 0;">Secure authentication required to proceed.</p>
+            <button class="btn btn-primary" style="width: 100%;">Continue with Enterprise SSO</button>
+            <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;" onclick="showPage('home')">Return to Dashboard</button>
+        </div>
+    </div>
 
     <footer class="container">
         <p>© 2024 ClaimFlow AI. Intelligence in every claim.</p>
     </footer>
 
     <script>
+        function showPage(pageId) {
+            const body = document.getElementById('main-body');
+            const isAlt = body.classList.contains('ui-alternate');
+            
+            // Elements
+            const mainContent = document.querySelector('main');
+            const signinView = document.getElementById('signin-view');
+            const genericPages = document.querySelectorAll('.page-content');
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-nav') === pageId) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Reset visibility
+            if (signinView) signinView.style.display = 'none';
+            if (mainContent) mainContent.style.display = 'block';
+            genericPages.forEach(p => p.style.display = 'none');
+            
+            // Hide ALL possible pages first
+            const allPages = document.querySelectorAll('.primary-page, .alt-page');
+            allPages.forEach(p => p.style.display = 'none');
+
+            if (pageId === 'signin' || pageId === 'join') {
+                if (mainContent) mainContent.style.display = 'none';
+                if (signinView) signinView.style.display = 'block';
+            } else if (pageId === 'home') {
+                if (isAlt) document.getElementById('alt-home').style.display = 'block';
+                else document.getElementById('primary-home').style.display = 'block';
+            } else if (pageId === 'features') {
+                if (isAlt) document.getElementById('alt-features').style.display = 'block';
+                else document.getElementById('primary-features').style.display = 'block';
+            } else if (pageId === 'process') {
+                if (isAlt) document.getElementById('alt-process').style.display = 'block';
+                else document.getElementById('primary-process').style.display = 'block';
+            } else if (pageId === 'benefits') {
+                if (isAlt) document.getElementById('alt-benefits').style.display = 'block';
+                else document.getElementById('primary-benefits').style.display = 'block';
+            } else {
+                const target = document.getElementById(pageId);
+                if (target) {
+                    target.style.display = 'block';
+                    // Hide main container if it's a standalone generic page
+                    if (target.classList.contains('page-content') && !target.closest('main')) {
+                        if (mainContent) mainContent.style.display = 'none';
+                    }
+                }
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
-            const isHidden = menu.style.display === 'none';
+            const isHidden = menu.style.display === 'none' || menu.style.display === '';
             menu.style.display = isHidden ? 'block' : 'none';
-            
-            // Prevent scroll when menu is open
             document.body.style.overflow = isHidden ? 'hidden' : 'auto';
         }
 
@@ -178,17 +363,18 @@
                 primary.classList.remove('active');
                 alternate.classList.add('active');
                 body.classList.add('ui-alternate');
+                showPage('alt-home');
             } else {
                 primary.classList.add('active');
                 alternate.classList.remove('active');
                 body.classList.remove('ui-alternate');
+                showPage('primary-home');
             }
             
-            // Close mobile menu if open during toggle
+            // Close mobile menu
             const menu = document.getElementById('mobile-menu');
-            if (menu.style.display === 'block') {
-                toggleMobileMenu();
-            }
+            if (menu) menu.style.display = 'none';
+            document.body.style.overflow = 'auto';
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
