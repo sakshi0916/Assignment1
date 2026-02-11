@@ -17,20 +17,28 @@
 }
 
 /* PRIMARY UI LAYOUT ENHANCEMENTS */
+.ui-primary .hero {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 6rem;
+    padding-top: 10rem;
+}
 
 .ui-primary .hero h1 {
     font-weight: 900;
     letter-spacing: -0.02em;
 }
+
 .ui-primary .card {
     border-radius: 0.75rem;
     background: white;
     box-shadow: var(--card-shadow);
 }
+
 .ui-primary .icon-box {
     border-radius: 12px;
 }
 
+/* SECONDARY UI Variable Overrides */
 .ui-alternate {
     --primary: #a855f7;
     --primary-light: #c084fc;
@@ -42,22 +50,54 @@
     --border: rgba(255, 255, 255, 0.1);
 }
 
+/* Ensure the background applies correctly */
 body.ui-primary {
     background: var(--bg-gradient);
     background-attachment: fixed;
 }
+
 body.ui-alternate {
     background: var(--bg-gradient) !important;
     background-attachment: fixed !important;
 }
+
+/* NAVIGATION ENHANCEMENTS */
 .ui-primary nav {
     background: rgba(255, 255, 255, 0.8);
     border-bottom: 1px solid rgba(15, 23, 42, 0.05);
 }
 
 .ui-alternate nav {
-    background: rgba(15, 23, 42, 0.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(15, 23, 42, 0.8) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    z-index: 1000 !important;
+}
+
+.ui-alternate .nav-links a {
+    color: rgba(240, 249, 255, 0.7) !important;
+}
+
+.ui-alternate .nav-links a:hover,
+.ui-alternate .nav-links a.active {
+    color: #f0f9ff !important;
+}
+
+.ui-alternate .btn-secondary {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #f0f9ff !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* HERO SECTION POLISH */
+.ui-primary .hero {
+    min-height: 85vh;
+    padding-top: 12rem;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 5rem;
 }
 
 .ui-primary .hero-badge {
@@ -68,23 +108,25 @@ body.ui-alternate {
     font-size: 0.75rem;
     font-weight: 700;
 }
-.ui-primary .hero {
-    grid-template-columns: 1.1fr 0.9fr;
-}
+
 .ui-primary .hero h1 {
     font-size: 4rem;
     line-height: 1;
     color: #0f172a;
     font-weight: 800;
 }
+
 .ui-primary .hero p {
     font-size: 1.125rem;
     color: #475569;
     max-width: 500px;
 }
+
+/* CARD ENHANCEMENTS */
 .ui-primary .grid {
     gap: 2.5rem;
 }
+
 .ui-primary .card {
     padding: 3rem;
     background: white;
@@ -92,29 +134,36 @@ body.ui-alternate {
     border-radius: 1rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 }
+
 .ui-primary .icon-box {
     background: #f1f5f9;
     color: #0f172a;
     border-radius: 1rem;
 }
+
 .ui-primary .card h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
+
+/* ALTERNATE UI LAYOUT - STAYING SYMMETRICAL AS PER PREVIOUS ENHANCEMENT */
 .ui-alternate .alt-hero {
     text-align: center;
     padding-top: 14rem;
 }
+
 .ui-alternate .hero-content {
     max-width: 720px;
     margin: 0 auto;
 }
+
 .ui-alternate .hero h1 {
     font-size: 4.5rem;
     text-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
 }
+
 @media (prefers-color-scheme: dark) {
-    body:not(.ui-alternate) {
+    :root:not(.ui-alternate) {
         --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1a2d4f 50%, #0a0f1f 100%);
         --bg-dark: #0f172a;
         --text-main: #f0f9ff;
@@ -124,6 +173,7 @@ body.ui-alternate {
         --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     }
 }
+
 html, body { 
     width: 100%; 
     min-height: 100vh; 
@@ -151,6 +201,8 @@ html, body {
     from { opacity: 0; transform: translateY(20px); } 
     to { opacity: 1; transform: translateY(0); } 
 }
+
+/* NAVIGATION */
 nav { 
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000; 
     backdrop-filter: blur(12px); 
@@ -415,6 +467,7 @@ nav {
     font-size: clamp(1rem, 2vw, 1.125rem); 
     color: var(--text-muted); 
     max-width: 540px; 
+    margin-bottom: 1rem;
 }
 
 .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -438,12 +491,10 @@ nav {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
     max-width: 380px;
-    position: relative;
-    overflow: hidden;
 }
 
 /* SECTIONS */
-.section { padding: 3rem 0; }
+.section { padding: 6rem 0; }
 .section-header { text-align: center; margin-bottom: 4rem; }
 .section-title { 
     font-size: clamp(2rem, 4vw, 2.75rem); 
@@ -505,7 +556,7 @@ footer {
     justify-content: center !important;
     align-items: center !important;
     text-align: center !important;
-    padding: 4rem 0 3rem !important;
+    padding: 8rem 0 4rem !important;
     position: relative !important;
     overflow: hidden !important;
 }
@@ -534,10 +585,32 @@ footer {
     margin: 0 auto;
 }
 
+.ui-alternate .floating-card {
+    transform: rotateX(15deg) rotateY(-10deg) !important;
+    box-shadow: 
+        -20px 20px 60px rgba(0,0,0,0.5),
+        0 0 20px rgba(168, 85, 247, 0.2) !important;
+}
 
 .ui-alternate .grid {
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 1.5rem !important;
+}
+
+.ui-alternate .card {
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(20px) !important;
+    flex-direction: column !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+    padding: 2.5rem !important;
+    border-radius: 1.5rem !important;
+}
+
+.ui-alternate .card:nth-child(2) {
+    background: linear-gradient(180deg, rgba(168, 85, 247, 0.1) 0%, rgba(15, 23, 42, 0.6) 100%) !important;
+    border: 1px solid rgba(168, 85, 247, 0.2) !important;
 }
 
 .hero-badge-alt {
@@ -550,6 +623,29 @@ footer {
     color: var(--primary);
     text-transform: uppercase;
     letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+}
+
+.visual-mesh {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background-image: radial-gradient(var(--primary) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.1;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+    transform: rotate(-15deg);
+    pointer-events: none;
+}
+
+.eyebrow {
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 0.5rem;
 }
 
 .icon-box-alt {
@@ -567,6 +663,29 @@ footer {
     transition: all 0.3s ease;
 }
 
+.pulse {
+    animation: pulse-width 2s ease-in-out infinite;
+}
+
+@keyframes pulse-width {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.glass-card {
+    animation: float 6s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+/* AI ASSESSMENT CARD ENHANCEMENTS */
 .ai-assessment-card {
     background: white !important;
     border: 1px solid rgba(15, 23, 42, 0.08) !important;
@@ -633,10 +752,39 @@ footer {
     background: var(--primary-light);
 }
 
+/* UI TOGGLE BUTTON */
+.btn-ui-toggle {
+    background: #0f172a;
+    color: white;
+    padding: 0.6rem 1.25rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-ui-toggle:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
 .ui-primary .toggle-text-alt { display: none; }
 .ui-alternate .toggle-text-primary { display: none; }
 
-   
+.ui-alternate .btn-ui-toggle {
+    background: rgba(168, 85, 247, 0.2);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    color: #f0f9ff;
+}
+
+@media (max-width: 1024px) {
+    .hero { gap: 2rem; }
+    .hero h1 { font-size: 3rem; }
+}
 
 @media (max-width: 968px) {
     .mobile-menu-btn { display: block; }

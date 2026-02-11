@@ -51,7 +51,7 @@
                         <h1>Welcome to your <br><span class="gradient-text">AI-Powered</span> Claims</h1>
                         <p class="line-clamp-2">Experience fast, smart, and hassle-free claim processing powered by intelligent automation and real-time verification.</p>
                         <div class="cta-group">
-                            <button class="btn btn-primary" onclick="showPage('primary-claim-flow')">Start New Claim →</button>
+                            <button class="btn btn-primary" onclick="showPage('claim-flow')">Start New Claim →</button>
                             <button class="btn btn-secondary" onclick="showPage('demo-view')">Watch Demo</button>
                         </div>
                     </div>
@@ -162,11 +162,12 @@
                         <h1>The Future of <br><span class="gradient-text">Predictive</span> Claims</h1>
                         <p class="line-clamp-2">Experience fast, smart, and hassle-free claim processing powered by intelligent automation and real-time verification.</p>
                         <div class="cta-group">
-                          <button class="btn btn-primary" onclick="showPage('primary-claim-flow')">Start New Claim →</button>
+                          <button class="btn btn-primary" onclick="showPage('claim-flow')">Start New Claim →</button>
                             <button class="btn btn-secondary" onclick="showPage('demo-view')">Watch Demo</button>
                         </div>
                     </div>
                 </section>
+            </div>
             <div class="alt-page" id="alt-features" style="display: none; padding: 8rem 0;">
                 <h2 class="section-title text-center">Advanced <span class="gradient-text">Features</span></h2>
                 <div class="grid" style="margin-top: 4rem;">
@@ -209,6 +210,26 @@
                 <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('home')">← Back to Home</button>
             </div>
         </div>
+        <div class="alt-page" id="alt-claim-flow" style="display: none; padding: 3.5rem 0;">
+    <h2 class="section-title text-center">New <span class="gradient-text">Claim</span> Wizard</h2>
+    <div class="glass-card" style="margin: 1.5rem auto; max-width: 500px;">
+        <div class="stat-row" style="margin-bottom: 2rem;">
+            <span class="stat-label">Step 1 of 3</span>
+            <span class="stat-value-primary">Identification</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+                <label style="font-size: 0.875rem; font-weight: 600;">Policy Number</label>
+                <div style="padding: 1rem; background: var(--glass); border: 1px solid var(--border); border-radius: 0.75rem; color: var(--text-muted);">
+                    CP-992-881-X
+                </div>
+            </div>
+            <button class="btn btn-primary">Scan Documents →</button>
+            <button class="btn btn-secondary" onclick="showPage('home')">Cancel</button>
+        </div>
+    </div>
+</div>
+
     </main>
 
     <!-- Generic Mockup Pages (Hidden by default) -->
@@ -272,60 +293,30 @@
     </footer>
 
     <script>
-        function showPage(pageId) {
-            const body = document.getElementById('main-body');
-            const isAlt = body.classList.contains('ui-alternate');
-            
-            // Elements
-            const mainContent = document.querySelector('main');
-            const signinView = document.getElementById('signin-view');
-            const genericPages = document.querySelectorAll('.page-content');
-            
-            // Update active nav link
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-nav') === pageId) {
-                    link.classList.add('active');
-                }
-            });
+      function showPage(pageId) {
 
-            // Reset visibility
-            if (signinView) signinView.style.display = 'none';
-            if (mainContent) mainContent.style.display = 'block';
-            genericPages.forEach(p => p.style.display = 'none');
-            
-            // Hide ALL possible pages first
-            const allPages = document.querySelectorAll('.primary-page, .alt-page');
-            allPages.forEach(p => p.style.display = 'none');
+    const isAlt = document
+        .getElementById('alternate-ui')
+        .classList.contains('active');
 
-            if (pageId === 'signin' || pageId === 'join') {
-                if (mainContent) mainContent.style.display = 'none';
-                if (signinView) signinView.style.display = 'block';
-            } else if (pageId === 'home') {
-                if (isAlt) document.getElementById('alt-home').style.display = 'block';
-                else document.getElementById('primary-home').style.display = 'block';
-            } else if (pageId === 'features') {
-                if (isAlt) document.getElementById('alt-features').style.display = 'block';
-                else document.getElementById('primary-features').style.display = 'block';
-            } else if (pageId === 'process') {
-                if (isAlt) document.getElementById('alt-process').style.display = 'block';
-                else document.getElementById('primary-process').style.display = 'block';
-            } else if (pageId === 'benefits') {
-                if (isAlt) document.getElementById('alt-benefits').style.display = 'block';
-                else document.getElementById('primary-benefits').style.display = 'block';
-            } else {
-                const target = document.getElementById(pageId);
-                if (target) {
-                    target.style.display = 'block';
-                    // Hide main container if it's a standalone generic page
-                    if (target.classList.contains('page-content') && !target.closest('main')) {
-                        if (mainContent) mainContent.style.display = 'none';
-                    }
-                }
-            }
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    // Hide primary pages
+    const primaryPages = document.querySelectorAll('#primary-ui .primary-page');
+    primaryPages.forEach(page => page.style.display = 'none');
+
+    // Hide alternate pages
+    const altPages = document.querySelectorAll('#alternate-ui .alt-page');
+    altPages.forEach(page => page.style.display = 'none');
+
+    const targetId = isAlt ? `alt-${pageId}` : `primary-${pageId}`;
+    const targetPage = document.getElementById(targetId);
+
+    if (targetPage) {
+        targetPage.style.display = 'block';
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
@@ -333,34 +324,34 @@
             menu.style.display = isHidden ? 'block' : 'none';
             document.body.style.overflow = isHidden ? 'hidden' : 'auto';
         }
+    function toggleInterface() {
+          const primary = document.getElementById('primary-ui');
+          const alternate = document.getElementById('alternate-ui');
+          const body = document.getElementById('main-body');
+          const isPrimary = primary.classList.contains('active');
 
-        function toggleInterface() {
-            const primary = document.getElementById('primary-ui');
-            const alternate = document.getElementById('alternate-ui');
-            const body = document.getElementById('main-body');
-            const isPrimary = primary.classList.contains('active');
-
-            if (isPrimary) {
-                primary.classList.remove('active');
-                alternate.classList.add('active');
-                body.classList.remove('ui-primary');
-                body.classList.add('ui-alternate');
-                showPage('home');
+        if (isPrimary) {
+           primary.classList.remove('active');
+           alternate.classList.add('active');
+           body.classList.remove('ui-primary');
+           body.classList.add('ui-alternate');
             } else {
-                primary.classList.add('active');
-                alternate.classList.remove('active');
-                body.classList.remove('ui-alternate');
-                body.classList.add('ui-primary');
-                showPage('home');
-            }
-            
-            // Close mobile menu
-            const menu = document.getElementById('mobile-menu');
-            if (menu) menu.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+            primary.classList.add('active');
+            alternate.classList.remove('active');
+            body.classList.remove('ui-alternate');
+         body.classList.add('ui-primary');
+    }
+
+    // Always go to home correctly
+    showPage('home');
+
+    // Close mobile menu safely
+    const menu = document.getElementById('mobile-menu');
+    if (menu) menu.style.display = 'none';
+    document.body.style.overflow = 'auto';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
     </script>
 </body>
 </html>
