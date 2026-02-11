@@ -56,21 +56,30 @@
                         </div>
                     </div>
                     <div class="hero-visual">
-                        <div class="glass-card">
+                        <div class="glass-card ai-assessment-card">
                             <div class="card-label">★ AI Assessment</div>
                             <div class="card-stats">
                                 <div class="stat-row">
                                     <span class="stat-label">System Status</span>
-                                    <span class="stat-value-status">Active</span>
+                                    <div class="status-indicator">
+                                        <span class="pulse-dot"></span>
+                                        <span class="stat-value-status">Active</span>
+                                    </div>
                                 </div>
                                 <div class="stat-row">
                                     <span class="stat-label">Analysis Accuracy</span>
-                                    <span class="stat-value">99.7%</span>
+                                    <div class="accuracy-badge">99.7%</div>
                                 </div>
                                 <div class="stat-row">
                                     <span class="stat-label">Processing Speed</span>
                                     <span class="stat-value-primary">Instant</span>
                                 </div>
+                            </div>
+                            <div class="card-chart-mock">
+                                <div class="bar" style="height: 40%"></div>
+                                <div class="bar" style="height: 70%"></div>
+                                <div class="bar" style="height: 55%"></div>
+                                <div class="bar" style="height: 90%"></div>
                             </div>
                         </div>
                     </div>
@@ -100,8 +109,8 @@
                 </section>
             </div>
 
-            <div class="primary-page" id="primary-features" style="display: none; padding: 5rem 0;">
-                <h2 class="section-title text-center">Claims <span class="gradient-text">Assistant</span> Features</h2>
+            <div class="primary-page" id="primary-features" style="display: none; padding: 8rem 0;">
+                <h2 class="section-title text-center">Advanced <span class="gradient-text">Features</span></h2>
                 <div class="grid" style="margin-top: 4rem;">
                     <div class="card">
                         <div class="icon-box">✦</div>
@@ -119,113 +128,85 @@
                         <p class="line-clamp-2">Follow your claim's progress through every stage of the approval pipeline.</p>
                     </div>
                 </div>
-                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('primary-home')">← Back to Home</button>
+                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('home')">← Back to Home</button>
             </div>
 
-            <div class="primary-page" id="primary-process" style="display: none; padding: 5rem 0;">
-                <h2 class="section-title text-center">Our <span class="gradient-text">Workflow</span></h2>
+            <div class="primary-page" id="primary-process" style="display: none; padding: 8rem 0;">
+                <h2 class="section-title text-center">Our <span class="gradient-text">Process</span></h2>
                 <div class="grid" style="margin-top: 4rem;">
-                    <div class="card"><h3>1. Data Intake</h3><p>Secure upload through our encrypted neural gateway.</p></div>
-                    <div class="card"><h3>2. AI Analysis</h3><p>Deep learning models validate all submitted documentation.</p></div>
-                    <div class="card"><h3>3. Final Payout</h3><p>Automated disbursement upon successful verification.</p></div>
+                    <div class="card"><h3>* Data Intake</h3><p>Secure upload through our encrypted neural gateway.</p></div>
+                    <div class="card"><h3>* AI Analysis</h3><p>Deep learning models validate all submitted documentation.</p></div>
+                    <div class="card"><h3>* Final Payout</h3><p>Automated disbursement upon successful verification.</p></div>
                 </div>
-                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('primary-home')">← Back to Home</button>
+                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('home')">← Back to Home</button>
             </div>
 
-            <div class="primary-page" id="primary-benefits" style="display: none; padding: 4rem 0;">
-                <h2 class="section-title text-center">Why Choose <span class="gradient-text">ClaimFlow</span></h2>
+            <div class="primary-page" id="primary-benefits" style="display: none; padding: 8rem 0;">
+                <h2 class="section-title text-center">Platform <span class="gradient-text">Benefits</span></h2>
                 <div class="grid" style="margin-top: 4rem;">
-                    <div class="card"><h3>90% Faster</h3><p>Reduce processing time from weeks to seconds with automation.</p></div>
-                    <div class="card"><h3>Zero Error</h3><p>Eliminate manual entry mistakes with smart OCR technology.</p></div>
-                    <div class="card"><h3>24/7 Support</h3><p>Our AI assistants are always online to help with your claims.</p></div>
+                    <div class="card"><h3>* 90% Faster</h3><p>Reduce processing time from weeks to seconds with automation.</p></div>
+                    <div class="card"><h3>* Zero Error</h3><p>Eliminate manual entry mistakes with smart OCR technology.</p></div>
+                    <div class="card"><h3>* 24/7 Support</h3><p>Our AI assistants are always online to help with your claims.</p></div>
                 </div>
-                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('primary-home')">← Back to Home</button>
+                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('home')">← Back to Home</button>
             </div>
         </div>
 
         <!-- Alternate UI View: Analytics Engine -->
         <div id="alternate-ui" class="ui-view ui-alternate">
             <div class="alt-page" id="alt-home">
-                <section class="hero">
+                <section class="alt-hero">
+                    <div class="visual-mesh"></div>
                     <div class="hero-content">
-                        <div class="hero-badge" style="color: var(--primary); border-color: var(--primary);">◆ Analytics Engine V2</div>
-                        <h1>Predictive <span class="gradient-text">Insights</span> Dashboard</h1>
-                        <p class="line-clamp-2">Unlock the power of your data with advanced neural prediction models. Monitor risk factors, trends, and automated payouts at scale.</p>
+                        <div class="hero-badge-alt">◆ Next Gen AI Processing</div>
+                        <h1>The Future of <br><span class="gradient-text">Predictive</span> Claims</h1>
+                        <p class="line-clamp-2">Experience fast, smart, and hassle-free claim processing powered by intelligent automation and real-time verification.</p>
                         <div class="cta-group">
-                            <button class="btn btn-primary" onclick="showPage('alt-features')">Launch Analytics</button>
-                            <button class="btn btn-secondary" onclick="showPage('report-view')">Export Report</button>
-                        </div>
-                    </div>
-                    <div class="hero-visual">
-                        <div class="glass-card">
-                            <div class="card-label">● Global Risk Index</div>
-                            <div class="card-value-large">Low</div>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar-fill"></div>
-                            </div>
-                            <p class="card-footer-text">System operating at peak efficiency. No major anomalies detected in current stream.</p>
+                          <button class="btn btn-primary" onclick="showPage('primary-claim-flow')">Start New Claim →</button>
+                            <button class="btn btn-secondary" onclick="showPage('demo-view')">Watch Demo</button>
                         </div>
                     </div>
                 </section>
-
-                <section class="section">
-                    <div class="section-header">
-                        <h2 class="section-title">The <span class="gradient-text">Protocol</span></h2>
-                    </div>
-                    <div class="grid">
-                        <div class="card">
-                            <div class="icon-box">●</div>
-                            <div class="card-text">
-                                <h3>Ingestion</h3>
-                                <p class="line-clamp-2">Stream complex data points through secure high-throughput neural gateways.</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="icon-box">★</div>
-                            <div class="card-text">
-                                <h3>Synthesis</h3>
-                                <p class="line-clamp-2">AI models cross-reference historical patterns and live market fluctuations.</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="icon-box">◆</div>
-                            <div class="card-text">
-                                <h3>Delivery</h3>
-                                <p class="line-clamp-2">Receive actionable intelligence reports with zero-latency dashboard updates.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div class="alt-page" id="alt-features" style="display: none; padding: 4rem 0;">
-                <h2 class="section-title text-center">Analytics <span class="gradient-text">Capabilities</span></h2>
+            <div class="alt-page" id="alt-features" style="display: none; padding: 8rem 0;">
+                <h2 class="section-title text-center">Advanced <span class="gradient-text">Features</span></h2>
                 <div class="grid" style="margin-top: 4rem;">
-                    <div class="card"><h3>Deep Learning</h3><p>Leverage recursive neural networks for pattern recognition.</p></div>
-                    <div class="card"><h3>Anomaly Discovery</h3><p>Detect outliers in data streams with 99.9% precision.</p></div>
-                    <div class="card"><h3>Predictive Risk</h3><p>Forecast future liabilities based on current market trends.</p></div>
+                    <div class="card">
+                        <div class="icon-box">✦</div>
+                        <h3>Instant Extraction</h3>
+                        <p class="line-clamp-2">Neural networks automatically pull data from receipts, invoices, and reports.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box">🛡</div>
+                        <h3>Fraud Shield</h3>
+                        <p class="line-clamp-2">Enterprise-grade fraud detection scans for inconsistencies in milliseconds.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon-box">⚡</div>
+                        <h3>Real-time Tracking</h3>
+                        <p class="line-clamp-2">Follow your claim's progress through every stage of the approval pipeline.</p>
+                    </div>
                 </div>
-                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('alt-home')">← Back to Home</button>
+                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('home')">← Back to Home</button>
             </div>
 
-            <div class="alt-page" id="alt-process" style="display: none; padding: 4rem 0;">
-                <h2 class="section-title text-center">Data <span class="gradient-text">Pipeline</span></h2>
-                <div class="grid" style="margin-top: 1rem;">
-                    <div class="card"><h3>Streaming</h3><p>Real-time data ingestion via distributed node networks.</p></div>
-                    <div class="card"><h3>Processing</h3><p>Parallelized computation across high-performance clusters.</p></div>
-                    <div class="card"><h3>Visualization</h3><p>Instant translation of complex data into actionable UI.</p></div>
-                </div>
-                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('alt-home')">← Back to Home</button>
-            </div>
-
-            <div class="alt-page" id="alt-benefits" style="display: none; padding: 4rem 0;">
-                <h2 class="section-title text-center">Enterprise <span class="gradient-text">Edge</span></h2>
+            <div class="alt-page" id="alt-process" style="display: none; padding: 8rem 0;">
+                <h2 class="section-title text-center">Our <span class="gradient-text">Process</span></h2>
                 <div class="grid" style="margin-top: 4rem;">
-                    <div class="card"><h3>Scalability</h3><p>Handle millions of concurrent data points with ease.</p></div>
-                    <div class="card"><h3>Security</h3><p>Military-grade encryption for all sensitive data streams.</p></div>
-                    <div class="card"><h3>Compliance</h3><p>Automatic auditing and regulatory reporting built-in.</p></div>
+                    <div class="card"><h3> Data Intake</h3><p>Secure upload through our encrypted neural gateway.</p></div>
+                    <div class="card"><h3> AI Analysis</h3><p>Deep learning models validate all submitted documentation.</p></div>
+                    <div class="card"><h3> Final Payout</h3><p>Automated disbursement upon successful verification.</p></div>
                 </div>
-                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('alt-home')">← Back to Home</button>
+                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('home')">← Back to Home</button>
+            </div>
+
+            <div class="alt-page" id="alt-benefits" style="display: none; padding: 8rem 0;">
+                <h2 class="section-title text-center">Platform <span class="gradient-text">Benefits</span></h2>
+                <div class="grid" style="margin-top: 4rem;">
+                    <div class="card"><h3>90% Faster</h3><p>Reduce processing time from weeks to seconds with automation.</p></div>
+                    <div class="card"><h3>Zero Error</h3><p>Eliminate manual entry mistakes with smart OCR technology.</p></div>
+                    <div class="card"><h3>24/7 Support</h3><p>Our AI assistants are always online to help with your claims.</p></div>
+                </div>
+                <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="showPage('home')">← Back to Home</button>
             </div>
         </div>
     </main>
@@ -258,9 +239,9 @@
         </div>
     </div>
 
-    <div id="primary-claim-flow" class="container page-content" style="display: none; padding: 8rem 0;">
+    <div id="primary-claim-flow" class="container page-content" style="display: none; padding: 3.5rem 0;">
         <h2 class="section-title text-center">New <span class="gradient-text">Claim</span> Wizard</h2>
-        <div class="glass-card" style="margin: 4rem auto; max-width: 500px;">
+        <div class="glass-card" style="margin: 1.5rem auto; max-width: 500px;">
             <div class="stat-row" style="margin-bottom: 2rem;">
                 <span class="stat-label">Step 1 of 3</span>
                 <span class="stat-value-primary">Identification</span>
@@ -277,7 +258,7 @@
     </div>
 
     <!-- Shared Sign In Page (Adapts to current UI) -->
-    <div id="signin-view" class="container" style="display: none; padding: 10rem 0;">
+    <div id="signin-view" class="container" style="display: none; padding: 7rem 0;">
         <div class="glass-card" style="margin: 0 auto; text-align: center;">
             <h2 class="section-title">Access <span class="gradient-text">Gateway</span></h2>
             <p style="margin: 2rem 0;">Secure authentication required to proceed.</p>
@@ -362,13 +343,15 @@
             if (isPrimary) {
                 primary.classList.remove('active');
                 alternate.classList.add('active');
+                body.classList.remove('ui-primary');
                 body.classList.add('ui-alternate');
-                showPage('alt-home');
+                showPage('home');
             } else {
                 primary.classList.add('active');
                 alternate.classList.remove('active');
                 body.classList.remove('ui-alternate');
-                showPage('primary-home');
+                body.classList.add('ui-primary');
+                showPage('home');
             }
             
             // Close mobile menu
