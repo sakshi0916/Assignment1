@@ -21,7 +21,7 @@
             </div>
 
             <div class="nav-actions">
-                <button class="btn btn-secondary" data-testid="btn-signin" onclick="showPage('signin')">Sign In</button>
+                <button class="btn btn-secondary" data-testid="btn-signin" onclick="showLoginView()">Sign In</button>
                 <button class="btn btn-primary" data-testid="btn-join" onclick="showPage('join')">Join Now</button>
             </div>
 
@@ -35,7 +35,7 @@
                 <a href="#how" onclick="showPage('process'); toggleMobileMenu()" class="mobile-link">Process</a>
                 <a href="#benefits" onclick="showPage('benefits'); toggleMobileMenu()" class="mobile-link">Benefits</a>
                 <hr class="mobile-divider">
-                <button class="btn btn-secondary mobile-btn" onclick="showPage('signin'); toggleMobileMenu()">Sign In</button>
+                <button class="btn btn-secondary mobile-btn" onclick="showLoginView(); toggleMobileMenu()">Sign In</button>
                 <button class="btn btn-primary mobile-btn" onclick="showPage('join'); toggleMobileMenu()">Join Now</button>
             </div>
         </div>
@@ -51,7 +51,7 @@
                         <h1>Welcome to your <br><span class="gradient-text">AI-Powered</span> Claims</h1>
                         <p class="line-clamp-2">Experience fast, smart, and hassle-free claim processing powered by intelligent automation and real-time verification.</p>
                         <div class="cta-group">
-                            <button class="btn btn-primary" onclick="showPage('claim-flow')">Start New Claim →</button>
+                            <button class="btn btn-primary" onclick="handleStartNewClaim()">Start New Claim →</button>
                             <button class="btn btn-secondary" onclick="showPage('demo-view')">Watch Demo</button>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                         <h1>The Future of <br><span class="gradient-text">Predictive</span> Claims</h1>
                         <p class="line-clamp-2">Experience fast, smart, and hassle-free claim processing powered by intelligent automation and real-time verification.</p>
                         <div class="cta-group">
-                          <button class="btn btn-primary" onclick="showPage('claim-flow')">Start New Claim →</button>
+                          <button class="btn btn-primary" onclick="handleStartNewClaim()">Start New Claim →</button>
                             <button class="btn btn-secondary" onclick="showPage('demo-view')">Watch Demo</button>
                         </div>
                     </div>
@@ -278,13 +278,89 @@
         </div>
     </div>
 
-    <!-- Shared Sign In Page (Adapts to current UI) -->
+    <!-- Shared Sign In Page (used as login screen) -->
     <div id="signin-view" class="container" style="display: none; padding: 7rem 0;">
         <div class="glass-card" style="margin: 0 auto; text-align: center;">
-            <h2 class="section-title">Access <span class="gradient-text">Gateway</span></h2>
-            <p style="margin: 2rem 0;">Secure authentication required to proceed.</p>
-            <button class="btn btn-primary" style="width: 100%;">Continue with Enterprise SSO</button>
-            <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;" onclick="showPage('home')">Return to Dashboard</button>
+            <h2 class="section-title">Sign in to <span class="gradient-text">ClaimFlow</span></h2>
+            <p style="margin: 1rem 0 2rem;">Use any email and password to continue. This is a demo login stored only in your browser.</p>
+            <form id="login-form" style="display:flex; flex-direction:column; gap:1rem; text-align:left;">
+                <label style="font-size:0.875rem; font-weight:600;">Email
+                    <input id="login-email" type="email" required placeholder="you@example.com" style="margin-top:0.35rem; width:100%; padding:0.75rem 0.9rem; border-radius:0.75rem; border:1px solid var(--border); background:rgba(255,255,255,0.85); font-size:0.9rem;">
+                </label>
+                <label style="font-size:0.875rem; font-weight:600;">Password
+                    <input id="login-password" type="password" required placeholder="Enter a demo password" style="margin-top:0.35rem; width:100%; padding:0.75rem 0.9rem; border-radius:0.75rem; border:1px solid var(--border); background:rgba(255,255,255,0.85); font-size:0.9rem;">
+                </label>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top:0.5rem;">Continue</button>
+            </form>
+            <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;" onclick="showPage('home')">Back to Home</button>
+        </div>
+    </div>
+
+    <!-- Claims Dashboard -->
+    <div id="dashboard-view" class="dashboard-page container" style="display: none; padding: 7rem 0 4rem;">
+        <div class="dashboard-header">
+            <div>
+                <div class="eyebrow">Claims Workspace</div>
+                <h2 class="section-title" style="margin-top:0.25rem;">Employee <span class="gradient-text">Policy Claims</span></h2>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:0.5rem; align-items:flex-end;">
+                <span id="dashboard-user-label" class="text-muted" style="font-size:0.8rem;"></span>
+                <button class="btn btn-secondary" onclick="logoutUser()">Log out</button>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <form id="policy-form" class="policy-form">
+                <input type="hidden" id="policy-id">
+                <div class="policy-form-row">
+                    <div class="policy-form-field">
+                        <label>Employee Name</label>
+                        <input id="employee-name" type="text" required placeholder="e.g. Priya Sharma">
+                    </div>
+                    <div class="policy-form-field">
+                        <label>Policy Number</label>
+                        <input id="policy-number" type="text" required placeholder="e.g. CP-992-881-X">
+                    </div>
+                    <div class="policy-form-field">
+                        <label>Status</label>
+                        <select id="policy-status" required>
+                            <option value="In Review">In Review</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Rejected">Rejected</option>
+                            <option value="Draft">Draft</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="policy-form-actions">
+                    <button type="submit" class="btn btn-primary policy-submit-btn">Save Policy</button>
+                </div>
+            </form>
+
+            <div class="policy-list-wrapper">
+                <div class="policy-list-header">
+                    <h3>Existing Policies</h3>
+                    <span class="text-muted" style="font-size:0.85rem;">Stored locally in this browser</span>
+                </div>
+                <div class="policy-table-container">
+                    <table class="policy-table">
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th>Policy No.</th>
+                                <th>Status</th>
+                                <th>Last Updated</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="policy-table-body">
+                            <!-- Policies will be rendered here -->
+                        </tbody>
+                    </table>
+                    <div id="policy-empty-state" class="text-muted" style="display:none; padding:1rem 0; font-size:0.9rem;">
+                        No policies yet. Add your first claim using the form above.
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -298,6 +374,12 @@
     const isAlt = document
         .getElementById('alternate-ui')
         .classList.contains('active');
+
+    // Hide auth / dashboard views whenever marketing pages are shown
+    const signinView = document.getElementById('signin-view');
+    if (signinView) signinView.style.display = 'none';
+    const dashboardView = document.getElementById('dashboard-view');
+    if (dashboardView) dashboardView.style.display = 'none';
 
     // Hide primary pages
     const primaryPages = document.querySelectorAll('#primary-ui .primary-page');
@@ -352,6 +434,242 @@
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// --- Simple auth + dashboard + local policy storage ---
+
+const POLICY_STORAGE_KEY = 'claimflowPolicies';
+const USER_STORAGE_KEY = 'claimflowUser';
+
+function getCurrentUser() {
+    try {
+        const raw = localStorage.getItem(USER_STORAGE_KEY);
+        return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+        return null;
+    }
+}
+
+function setCurrentUser(user) {
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+}
+
+function logoutUser() {
+    localStorage.removeItem(USER_STORAGE_KEY);
+    showPage('home');
+}
+
+function showLoginView() {
+    // Hide marketing/dashboard views and show the sign-in card
+    const primary = document.getElementById('primary-ui');
+    const alternate = document.getElementById('alternate-ui');
+    if (primary) primary.style.display = 'none';
+    if (alternate) alternate.style.display = 'none';
+
+    const signinView = document.getElementById('signin-view');
+    if (signinView) {
+        signinView.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+function showDashboardView() {
+    const primary = document.getElementById('primary-ui');
+    const alternate = document.getElementById('alternate-ui');
+    if (primary) primary.style.display = 'none';
+    if (alternate) alternate.style.display = 'none';
+
+    const signinView = document.getElementById('signin-view');
+    if (signinView) signinView.style.display = 'none';
+
+    const dashboardView = document.getElementById('dashboard-view');
+    if (dashboardView) {
+        dashboardView.style.display = 'block';
+        renderPolicies();
+        const user = getCurrentUser();
+        const label = document.getElementById('dashboard-user-label');
+        if (label) {
+            label.textContent = user ? `Signed in as ${user.name} (${user.email})` : '';
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+function handleStartNewClaim() {
+    const user = getCurrentUser();
+    if (!user) {
+        showLoginView();
+    } else {
+        showDashboardView();
+    }
+}
+
+function loadPolicies() {
+    try {
+        const raw = localStorage.getItem(POLICY_STORAGE_KEY);
+        if (raw) return JSON.parse(raw);
+    } catch (e) {
+        // ignore parse errors and fall through to defaults
+    }
+    // Seed with some demo data on first load
+    const seed = [
+        {
+            id: 'P1',
+            employeeName: 'Rahul Mehta',
+            policyNumber: 'CP-992-881-X',
+            status: 'In Review',
+            updatedAt: new Date().toISOString()
+        },
+        {
+            id: 'P2',
+            employeeName: 'Ananya Rao',
+            policyNumber: 'CP-774-220-A',
+            status: 'Approved',
+            updatedAt: new Date().toISOString()
+        },
+        {
+            id: 'P3',
+            employeeName: 'Vikram Singh',
+            policyNumber: 'CP-110-554-Z',
+            status: 'Draft',
+            updatedAt: new Date().toISOString()
+        }
+    ];
+    localStorage.setItem(POLICY_STORAGE_KEY, JSON.stringify(seed));
+    return seed;
+}
+
+function savePolicies(policies) {
+    localStorage.setItem(POLICY_STORAGE_KEY, JSON.stringify(policies));
+}
+
+function renderPolicies() {
+    const policies = loadPolicies();
+    const tbody = document.getElementById('policy-table-body');
+    const emptyState = document.getElementById('policy-empty-state');
+    if (!tbody) return;
+
+    tbody.innerHTML = '';
+
+    if (!policies.length) {
+        if (emptyState) emptyState.style.display = 'block';
+        return;
+    }
+    if (emptyState) emptyState.style.display = 'none';
+
+    policies.forEach(policy => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${policy.employeeName}</td>
+            <td>${policy.policyNumber}</td>
+            <td><span class="status-pill status-${policy.status.replace(' ', '').toLowerCase()}">${policy.status}</span></td>
+            <td>${new Date(policy.updatedAt).toLocaleString()}</td>
+            <td class="policy-actions-cell">
+                <button class="policy-action-btn" onclick="editPolicy('${policy.id}')">Edit</button>
+                <button class="policy-action-btn policy-action-danger" onclick="deletePolicy('${policy.id}')">Delete</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+function editPolicy(id) {
+    const policies = loadPolicies();
+    const policy = policies.find(p => p.id === id);
+    if (!policy) return;
+    const idInput = document.getElementById('policy-id');
+    const nameInput = document.getElementById('employee-name');
+    const numberInput = document.getElementById('policy-number');
+    const statusSelect = document.getElementById('policy-status');
+
+    if (idInput) idInput.value = policy.id;
+    if (nameInput) nameInput.value = policy.employeeName;
+    if (numberInput) numberInput.value = policy.policyNumber;
+    if (statusSelect) statusSelect.value = policy.status;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function deletePolicy(id) {
+    const policies = loadPolicies();
+    const updated = policies.filter(p => p.id !== id);
+    savePolicies(updated);
+    renderPolicies();
+}
+
+function setupLoginAndDashboard() {
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('login-email');
+            const passwordInput = document.getElementById('login-password');
+            if (!emailInput || !passwordInput) return;
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            if (!email || !password) return;
+
+            const name = email.split('@')[0] || 'User';
+            setCurrentUser({ email, name });
+
+            // Clear password field for safety
+            passwordInput.value = '';
+
+            showDashboardView();
+        });
+    }
+
+    const policyForm = document.getElementById('policy-form');
+    if (policyForm) {
+        policyForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const idInput = document.getElementById('policy-id');
+            const nameInput = document.getElementById('employee-name');
+            const numberInput = document.getElementById('policy-number');
+            const statusSelect = document.getElementById('policy-status');
+            if (!nameInput || !numberInput || !statusSelect) return;
+
+            const name = nameInput.value.trim();
+            const number = numberInput.value.trim();
+            const status = statusSelect.value;
+            if (!name || !number || !status) return;
+
+            const policies = loadPolicies();
+            const existingId = idInput ? idInput.value : '';
+
+            if (existingId) {
+                const idx = policies.findIndex(p => p.id === existingId);
+                if (idx !== -1) {
+                    policies[idx].employeeName = name;
+                    policies[idx].policyNumber = number;
+                    policies[idx].status = status;
+                    policies[idx].updatedAt = new Date().toISOString();
+                }
+            } else {
+                const newPolicy = {
+                    id: `P-${Date.now()}`,
+                    employeeName: name,
+                    policyNumber: number,
+                    status: status,
+                    updatedAt: new Date().toISOString()
+                };
+                policies.unshift(newPolicy);
+            }
+
+            savePolicies(policies);
+            if (idInput) idInput.value = '';
+            nameInput.value = '';
+            numberInput.value = '';
+            statusSelect.value = 'In Review';
+
+            renderPolicies();
+        });
+    }
+
+    // Ensure seed data exists on first load and list is ready
+    loadPolicies();
+}
+
+document.addEventListener('DOMContentLoaded', setupLoginAndDashboard);
     </script>
 </body>
 </html>
